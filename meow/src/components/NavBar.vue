@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-if="loginStore.loggedIn" class="flex justify-between">
+    <div v-if="!loginStore.loggedIn" class="flex justify-between">
+      <div class="m-8">
+        <RouterLink class="mx-8" to="/">Home</RouterLink>
+      </div>
       <div class="m-8">
         <RouterLink class="mx-8" to="/register">Register</RouterLink>
         <RouterLink class="mx-8" to="/login">Login</RouterLink>
