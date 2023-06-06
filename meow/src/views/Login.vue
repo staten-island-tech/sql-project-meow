@@ -2,7 +2,7 @@
 import NavBar from "../components/NavBar.vue";
 import { useLoginStore } from "../stores/login";
 import { ref } from "vue";
-import { router } from "../router/index";
+import  router  from "../router/index";
 
 const loginStore = useLoginStore();
 const email = ref("");
