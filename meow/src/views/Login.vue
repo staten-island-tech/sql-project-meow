@@ -2,11 +2,17 @@
 import NavBar from "../components/NavBar.vue";
 import { useLoginStore } from "../stores/login";
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
+import { router } from "../router/index";
 
 const loginStore = useLoginStore();
 const email = ref("");
 const password = ref("");
+
+function submit (){
+  console.log(this.$router)
+  loginStore.signIn(email.value, password.value)
+  router.push('/')
+}
 </script>
 
 <template>
@@ -16,7 +22,7 @@ const password = ref("");
       <h1 class="text-center text-3xl">Login</h1>
       <form
         class="flex flex-col w-1/2 m-auto"
-        @submit.prevent="loginStore.signIn(email, password)"
+        @submit.prevent="submit()"
       >
         <label class="text-xl" for="email">Email</label>
         <input
@@ -34,9 +40,7 @@ const password = ref("");
         />
         <button
           class="cursor-pointer bg-blue-100 py-2 px-4 rounded-md text-xl mt-8"
-          to="/"
           type="submit"
-          @click="$router.push('/')"
         >
           Login
         </button>
