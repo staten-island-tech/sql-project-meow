@@ -8,6 +8,13 @@ export const useLoginStore = defineStore("login", {
     email: null,
   }),
   actions: {
+    async signOut() {
+      const { error } = await supabase.auth.signOut();
+      this.loggedIn = false;
+      if (error) {
+        console.log(error);
+      }
+    },
     async signUp(email, password) {
       try {
         this.loggedIn = true;
@@ -20,9 +27,8 @@ export const useLoginStore = defineStore("login", {
         if (error) {
           console.log(error);
         }
-      } finally {
+      } catch {
         this.loggedIn = false;
-        console.log(this.loggedIn);
       }
     },
     async signIn(email, password) {
@@ -32,14 +38,14 @@ export const useLoginStore = defineStore("login", {
           email: email,
           password: password,
         });
+
         this.email = email;
         this.loginInfo = data;
         if (error) {
           console.log(error);
         }
-      } finally {
+      } catch {
         this.loggedIn = false;
-        console.log(this.loggedIn);
       }
     },
   },

@@ -14,6 +14,9 @@
         <RouterLink class="mx-8" to="/edit">Edit Gallery</RouterLink>
         <RouterLink class="mx-8" to="/profile">Profile</RouterLink>
       </div>
+      <div class="m-8 mr-16 text-red-500">
+        <RouterLink to="/" @click="loginStore.signOut()">Logout</RouterLink>
+      </div>
     </div>
   </div>
 </template>
