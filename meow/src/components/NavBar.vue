@@ -11,6 +11,7 @@
     </div>
     <div v-else class="flex justify-between">
       <div class="m-8">
+        <RouterLink class="mx-8" to="/">Home</RouterLink>
         <RouterLink class="mx-8" to="/edit">Edit Gallery</RouterLink>
         <RouterLink class="mx-8" to="/profile">Profile</RouterLink>
       </div>
@@ -23,6 +24,7 @@
 
 <script setup>
 import { useLoginStore } from "../stores/login";
+import { useProfileStore } from "../stores/profile";
 import { RouterLink } from "vue-router";
 const loginStore = useLoginStore();
 </script>

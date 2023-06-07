@@ -2,14 +2,15 @@
 import NavBar from "../components/NavBar.vue";
 import { useLoginStore } from "../stores/login";
 import { ref } from "vue";
+import router from "../router/index";
 
 const loginStore = useLoginStore();
 const email = ref("");
 const password = ref("");
 
-function submit (){
-  loginStore.signUp(email.value, password.value)
-  $router.push('/')
+function submit() {
+  loginStore.signUp(email.value, password.value);
+  router.push("/create");
 }
 </script>
 
@@ -18,10 +19,7 @@ function submit (){
     <nav-bar></nav-bar>
     <div class="align-middle">
       <h1 class="text-center text-3xl">Register</h1>
-      <form
-        class="flex flex-col w-1/2 m-auto"
-        @submit.prevent="submit()"
-      >
+      <form class="flex flex-col w-1/2 m-auto" @submit.prevent="submit()">
         <label class="text-xl" for="email">Email</label>
         <input
           id="email"
