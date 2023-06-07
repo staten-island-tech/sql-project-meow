@@ -11,6 +11,7 @@
     "@supabase/supabase-js": "^2.24.0",
     "pinia": "^2.0.36",
     "vue": "^3.3.2",
+    "vue-material-design-icons": "^5.2.0",
     "vue-router": "^4.2.0"
   },
   "devDependencies": {

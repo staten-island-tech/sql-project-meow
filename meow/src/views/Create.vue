@@ -9,6 +9,7 @@
           class="border-2 border-black p-2 m-2 rounded-lg"
           type="text"
           v-model="username"
+          required
         />
         <div class="flex">
           <div class="w-1/2">
@@ -19,7 +20,7 @@
                   v-for="capybara in capybaras"
                   :src="capybara"
                   :key="capybara"
-                  alt="Kitty Picture"
+                  alt="Capy Picture"
                   class="w-28 h-28 object-cover m-4 shadow-lg rounded-full"
                   @click="setProfilePicture(capybara)"
                 />
@@ -36,6 +37,7 @@
                 v-model="pfpURL"
               />
               <button
+                type="button"
                 class="cursor-pointer bg-red-100 py-2 px-4 rounded-md text-xl mt-4"
                 @click="setProfilePicture(pfpURL)"
               >
@@ -84,6 +86,7 @@ function setProfilePicture(link) {
 }
 
 function submit() {
+  console.log("qhaosufdh");
   profileStore.createProfile(username.value, image.value);
   router.push("/profile");
 }

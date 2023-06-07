@@ -8,6 +8,7 @@ export const useProfileStore = defineStore("profile", {
     email: null,
     pfp_image: null,
     gallery: [],
+    id: null,
   }),
   actions: {
     async createProfile(username, image) {
@@ -46,7 +47,20 @@ export const useProfileStore = defineStore("profile", {
         console.log(error);
         return error;
       } else {
-        console.log(data[0]);
+        const info = data[0];
+        this.username = info.username;
+        this.pfp_image = info.image;
+        this.gallery = info.gallery;
+        this.id = info.id;
+      }
+    },
+    async updateGallery() {
+      let { data, error } = await supabase
+        .from("Meow")
+        .update({ gallery: this.gallery })
+        .eq("id", this.id);
+      if (error) {
+        console.log(error);
       }
     },
   },
