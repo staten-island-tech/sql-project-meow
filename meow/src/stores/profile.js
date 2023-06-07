@@ -23,5 +23,18 @@ export const useProfileStore = defineStore("profile", {
         console.log(error);
       }
     },
+    async checkEmail() {
+      this.email = useLoginStore().email;
+      let { data, error } = await supabase
+        .from("Meow")
+        .select()
+        .eq("email", this.email);
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data);
+        return data;
+      }
+    },
   },
 });

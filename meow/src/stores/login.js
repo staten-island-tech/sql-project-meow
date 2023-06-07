@@ -17,7 +17,6 @@ export const useLoginStore = defineStore("login", {
     },
     async signUp(email, password) {
       try {
-        this.loggedIn = true;
         const { data, error } = await supabase.auth.signUp({
           email: email,
           password: password,
@@ -26,6 +25,9 @@ export const useLoginStore = defineStore("login", {
         this.loginInfo = data;
         if (error) {
           console.log(error);
+          return error;
+        } else {
+          this.loggedIn = true;
         }
       } catch {
         this.loggedIn = false;
@@ -33,7 +35,6 @@ export const useLoginStore = defineStore("login", {
     },
     async signIn(email, password) {
       try {
-        this.loggedIn = true;
         const { data, error } = await supabase.auth.signInWithPassword({
           email: email,
           password: password,
@@ -43,6 +44,8 @@ export const useLoginStore = defineStore("login", {
         this.loginInfo = data;
         if (error) {
           console.log(error);
+        } else {
+          this.loggedIn = true;
         }
       } catch {
         this.loggedIn = false;

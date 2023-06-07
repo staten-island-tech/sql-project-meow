@@ -1,16 +1,24 @@
 <script setup>
 import NavBar from "../components/NavBar.vue";
 import { useLoginStore } from "../stores/login";
+import { useProfileStore } from "../stores/profile";
 import { ref } from "vue";
 import router from "../router/index";
 
 const loginStore = useLoginStore();
+const profileStore = useProfileStore();
 const email = ref("");
 const password = ref("");
-
+const errorMessage = ref();
 function submit() {
-  loginStore.signUp(email.value, password.value);
-  router.push("/create");
+  const res = loginStore.signUp(email.value, password.value);
+  res.then((error) => {
+    if (error) {
+      errorMessage.value = error;
+    } else {
+      router.push("/create");
+    }
+  });
 }
 </script>
 
@@ -40,6 +48,7 @@ function submit() {
         >
           Sign Up
         </button>
+        <p>{{ errorMessage }}</p>
       </form>
     </div>
   </div>

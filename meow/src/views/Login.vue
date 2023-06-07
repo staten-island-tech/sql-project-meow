@@ -1,6 +1,7 @@
 <script setup>
 import NavBar from "../components/NavBar.vue";
 import { useLoginStore } from "../stores/login";
+import { useProfileStore } from "../stores/profile";
 import { ref } from "vue";
 import router from "../router/index";
 
@@ -9,7 +10,6 @@ const email = ref("");
 const password = ref("");
 
 function submit() {
-  console.log(this.$router);
   loginStore.signIn(email.value, password.value);
   router.push("/profile");
 }
