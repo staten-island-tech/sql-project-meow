@@ -50,7 +50,7 @@ export const useProfileStore = defineStore("profile", {
         const info = data[0];
         this.username = info.username;
         this.pfp_image = info.image;
-        this.gallery = info.gallery;
+        this.gallery = info.meows;
         this.id = info.id;
       }
     },
