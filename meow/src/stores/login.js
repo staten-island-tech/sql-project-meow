@@ -44,6 +44,7 @@ export const useLoginStore = defineStore("login", {
         this.loginInfo = data;
         if (error) {
           console.log(error);
+          return error;
         } else {
           this.loggedIn = true;
         }

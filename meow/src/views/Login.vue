@@ -6,12 +6,27 @@ import { ref } from "vue";
 import router from "../router/index";
 
 const loginStore = useLoginStore();
+const profileStore = useProfileStore();
 const email = ref("");
 const password = ref("");
 
 function submit() {
-  loginStore.signIn(email.value, password.value);
-  router.push("/profile");
+  const res = loginStore.signIn(email.value, password.value);
+  res.then((error) => {
+    if (error) {
+      errorMessage.value = error;
+    } else {
+      const check = profileStore.checkEmail();
+      check.then((e) => {
+        console.log(e.length === 0);
+        if (e.length === 0) {
+          router.push("/create");
+        } else {
+          router.push("/profile");
+        }
+      });
+    }
+  });
 }
 </script>
 

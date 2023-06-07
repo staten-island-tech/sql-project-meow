@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import { supabase } from "../supabase";
 import { useLoginStore } from "./login";
 
@@ -34,6 +34,19 @@ export const useProfileStore = defineStore("profile", {
       } else {
         console.log(data);
         return data;
+      }
+    },
+    async readUser() {
+      this.email = useLoginStore().email;
+      let { data, error } = await supabase
+        .from("Meow")
+        .select()
+        .eq("email", this.email);
+      if (error) {
+        console.log(error);
+        return error;
+      } else {
+        console.log(data[0]);
       }
     },
   },
